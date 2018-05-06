@@ -31,6 +31,9 @@ namespace Completed
 		//Start overrides the Start function of MovingObject
 		protected override void Start ()
 		{
+			//Set the GameManager's player reference
+			GameManager.instance.player = this;
+
 			//Get a component reference to the Player's animator component
 			animator = GetComponent<Animator>();
 			
@@ -43,8 +46,8 @@ namespace Completed
 			//Call the Start function of the MovingObject base class.
 			base.Start ();
 		}
-		
-		
+
+
 		//This function is called when the behaviour becomes disabled or inactive.
 		private void OnDisable ()
 		{

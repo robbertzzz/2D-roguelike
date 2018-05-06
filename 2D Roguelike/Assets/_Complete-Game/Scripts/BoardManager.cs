@@ -26,8 +26,10 @@ namespace Completed
 		}
 		
 		
-		public int columns = 8; 										//Number of columns in our game board.
-		public int rows = 8;											//Number of rows in our game board.
+		public int startColumns = 8; 										//Number of columns in our game board.
+		public int startRows = 8;                                           //Number of rows in our game board.
+		public int columns;
+		public int rows;
 		public Count wallCount = new Count (5, 9);						//Lower and upper limit for our random number of walls per level.
 		public Count foodCount = new Count (1, 5);						//Lower and upper limit for our random number of food items per level.
 		public GameObject exit;											//Prefab to spawn for exit.
@@ -61,11 +63,14 @@ namespace Completed
 		
 		
 		//Sets up the outer walls and floor (background) of the game board.
-		void BoardSetup ()
+		void BoardSetup (int level)
 		{
 			//Instantiate Board and set boardHolder to its transform.
 			boardHolder = new GameObject ("Board").transform;
-			
+
+			columns = startColumns + level - 1;
+			rows = startRows + level - 1;
+
 			//Loop along x axis, starting from -1 (to fill corner) with floor or outerwall edge tiles.
 			for(int x = -1; x < columns + 1; x++)
 			{
@@ -132,7 +137,7 @@ namespace Completed
 		public void SetupScene (int level)
 		{
 			//Creates the outer walls and floor.
-			BoardSetup ();
+			BoardSetup (level);
 			
 			//Reset our list of gridpositions.
 			InitialiseList ();
