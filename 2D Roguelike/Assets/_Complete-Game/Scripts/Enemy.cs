@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Completed
 {
@@ -13,9 +14,17 @@ namespace Completed
 		
 		private Animator animator;							//Variable of type Animator to store a reference to the enemy's Animator component.
 		private Transform target;							//Transform to attempt to move toward each turn.
-		private bool skipMove;								//Boolean to determine whether or not enemy should skip a turn or move this turn.
-		
-		
+		private delegate void CurrentState();               //Delegate for the AI states
+		CurrentState currentState;                          //
+		[SerializeField] private int attackDistance = 5;	//The distance to the player from which the enemy starts attacking
+
+		private Player player {
+			get {
+				return GameManager.instance.player;
+			}
+		}
+
+
 		//Start overrides the virtual Start function of the base class.
 		protected override void Start ()
 		{
@@ -28,53 +37,66 @@ namespace Completed
 			
 			//Find the Player GameObject using it's tag and store a reference to its transform component.
 			target = GameObject.FindGameObjectWithTag ("Player").transform;
+
+			//Start roaming around
+			currentState = RoamMove;
 			
 			//Call the start function of our base class MovingObject.
 			base.Start ();
 		}
 		
 		
-		//Override the AttemptMove function of MovingObject to include functionality needed for Enemy to skip turns.
-		//See comments in MovingObject for more on how base AttemptMove function works.
-		protected override void AttemptMove <T> (int xDir, int yDir)
-		{
-			//Check if skipMove is true, if so set it to false and skip this turn.
-			if(skipMove)
-			{
-				skipMove = false;
-				return;
-				
-			}
-			
-			//Call the AttemptMove function from MovingObject.
-			base.AttemptMove <T> (xDir, yDir);
-			
-			//Now that Enemy has moved, set skipMove to true to skip next move.
-			skipMove = true;
-		}
-		
-		
 		//MoveEnemy is called by the GameManger each turn to tell each Enemy to try to move towards the player.
 		public void MoveEnemy ()
 		{
-			//Declare variables for X and Y axis move directions, these range from -1 to 1.
-			//These values allow us to choose between the cardinal directions: up, down, left and right.
-			int xDir = 0;
-			int yDir = 0;
-			
-			//If the difference in positions is approximately zero (Epsilon) do the following:
-			if(Mathf.Abs (target.position.x - transform.position.x) < float.Epsilon)
-				
-				//If the y coordinate of the target's (player) position is greater than the y coordinate of this enemy's position set y direction 1 (to move up). If not, set it to -1 (to move down).
-				yDir = target.position.y > transform.position.y ? 1 : -1;
-			
-			//If the difference in positions is not approximately zero (Epsilon) do the following:
-			else
-				//Check if target x position is greater than enemy's x position, if so set x direction to 1 (move right), if not set to -1 (move left).
-				xDir = target.position.x > transform.position.x ? 1 : -1;
-			
-			//Call the AttemptMove function and pass in the generic parameter Player, because Enemy is moving and expecting to potentially encounter a Player
-			AttemptMove <Player> (xDir, yDir);
+			currentState();
+		}
+
+		//Behaviour when the player is out of sight
+		private void RoamMove() {
+			//Check if the player is near. If so, attack.
+			if(Mathf.RoundToInt((player.transform.position - transform.position).magnitude) < attackDistance) {
+				currentState = AttackMove;
+				currentState();
+				return;
+			}
+
+			//Perform a random move
+			int direction = Random.Range(0, 3);
+			AttemptMove<Player>(direction < 2 ? (direction == 0 ? -1 : 1) : 0, direction > 1 ? (direction == 2 ? -1 : 1) : 0);
+		}
+
+		//Behaviour when the player is in sight
+		private void AttackMove() {
+			//Check if the player is still near. If not, roam around.
+			if(Mathf.RoundToInt((player.transform.position - transform.position).magnitude) >= attackDistance) {
+				currentState = RoamMove;
+				currentState();
+				return;
+			}
+
+			//Move towards the player
+			int xDistance = Mathf.RoundToInt(player.transform.position.x - transform.position.x);
+			int yDistance = Mathf.RoundToInt(player.transform.position.y - transform.position.y);
+
+			//We don't need the actual distance, just the direction
+			int xDir = xDistance != 0 ? (xDistance > 0 ? 1 : -1) : 0;
+			int yDir = yDistance != 0 ? (yDistance > 0 ? 1 : -1) : 0;
+
+			//Let's make it a bit random. See if we need to and are able to move in the x direction, else attempt a move in the y direction. If we're stuck in both directions, the enemy won't move.
+			Vector2 start = transform.position;
+			Vector2 end = transform.position + new Vector3(xDir, 0);
+
+			//Don't check for our own collider
+			GetComponent<BoxCollider2D>().enabled = false;
+			RaycastHit2D hit = Physics2D.Linecast(start, end, blockingLayer);
+			GetComponent<BoxCollider2D>().enabled = true;
+
+			if((Random.Range(0, 1) == 0 || yDir == 0) && xDir != 0 && (hit.transform == null || hit.transform.GetComponent<Player>())) {
+				AttemptMove<Player>(xDir, 0);
+			} else {
+				AttemptMove<Player>(0, yDir);
+			}
 		}
 		
 		

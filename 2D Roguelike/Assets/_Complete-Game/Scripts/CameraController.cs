@@ -31,7 +31,6 @@ namespace Completed {
 				float camX, camY;
 				camX = Mathf.Clamp(player.transform.position.x + .5f, .5f * size + 1f, boardScript.columns - .5f * size - 2);
 				camY = Mathf.Clamp(player.transform.position.y + .5f, .5f * size + 1f, boardScript.rows - .5f * size - 2);
-				Debug.Log(boardScript.rows - .5f * size);
 				transform.position = new Vector3(camX, camY, transform.position.z);
 			}
 		}
