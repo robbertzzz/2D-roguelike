@@ -133,30 +133,35 @@ namespace Completed
 		//AttemptMove takes a generic parameter T which for Player will be of the type Wall, it also takes integers for x and y direction to move in.
 		protected override void AttemptMove <T> (int xDir, int yDir)
 		{
-			//Every time player moves, subtract from food points total.
-			food--;
-			
-			//Update food text display to reflect current score.
-			foodText.text = "Food: " + food;
-			
 			//Call the AttemptMove method of the base class, passing in the component T (in this case Wall) and x and y direction to move.
 			base.AttemptMove <T> (xDir, yDir);
 			
 			//Hit allows us to reference the result of the Linecast done in Move.
 			RaycastHit2D hit;
-			
-			//If Move returns true, meaning Player was able to move into an empty space.
-			if (Move (xDir, yDir, out hit)) 
-			{
+
+			//If we were able to move, count it as a turn and subtract food. If we couldn't move, do nothing.
+			if(Move(xDir, yDir, out hit)) {
 				//Call RandomizeSfx of SoundManager to play the move sound, passing in two audio clips to choose from.
-				SoundManager.instance.RandomizeSfx (moveSound1, moveSound2);
+				SoundManager.instance.RandomizeSfx(moveSound1, moveSound2);
+
+				//Set the playersTurn boolean of GameManager to false now that players turn is over.
+				GameManager.instance.playersTurn = false;
+
+				SubtractFood();
+			} else if(hit.transform.GetComponent<Wall>()) {
+				//We've tried moving into a wall, this does cost food and a turn
+				GameManager.instance.playersTurn = false;
+				SubtractFood();
 			}
-			
+		}
+
+		//This can be called from multiple places in AttemptMove, so turned it onto a function
+		private void SubtractFood(int amount = 1) {
+			food -= amount;
+			foodText.text = "Food: " + food;
+
 			//Since the player has moved and lost food points, check if the game has ended.
-			CheckIfGameOver ();
-			
-			//Set the playersTurn boolean of GameManager to false now that players turn is over.
-			GameManager.instance.playersTurn = false;
+			CheckIfGameOver();
 		}
 		
 		
