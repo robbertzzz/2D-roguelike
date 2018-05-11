@@ -1,6 +1,6 @@
 WindowsStandalone
 SceneListBegin?
-Assets/_Complete-Game/Scenes/Main.unity
+Assets/Scenes/Main.unity
 SceneListEnd?
 e980dc017931c5783f7c2411cd9ba865 Assembly-CSharp.dll:Completed.Player
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -138,7 +138,6 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
-25365ec66501498d52d11616553a9368 Assembly-CSharp.dll:.Readme
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
@@ -147,5 +146,5 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 92460f1765746513cbffd350f5d2e90c Assembly-CSharp.dll:Completed.Wall
 dd5d643085ef208a7df2d51e5e5ddeb8 Assembly-CSharp.dll:Completed.GameManager
-24ac7fa068cd1cd6a9b4b7f6868043b6 Assembly-CSharp.dll:.TutorialInfo
 51c0d06af0eb653467365e30eb26c7e5 Assembly-CSharp.dll:Completed.Enemy
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Editor
