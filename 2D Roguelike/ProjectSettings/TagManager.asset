@@ -54,3 +54,6 @@ TagManager:
   - name: Units
     uniqueID: 3393972251
     locked: 0
+  - name: FullscreenEffects
+    uniqueID: 3576163353
+    locked: 0
