@@ -20,7 +20,23 @@ namespace Completed
 		public AudioClip drinkSound1;				//1 of 2 Audio clips to play when player collects a soda object.
 		public AudioClip drinkSound2;				//2 of 2 Audio clips to play when player collects a soda object.
 		public AudioClip gameOverSound;             //Audio clip to play when player dies.
-		public FullscreenEffect bloodSplatterEffect;//Fullscreen blood splatter effect
+		public FullscreenEffect fullscreenBloodSplatter;//Fullscreen blood splatter effect
+		public GameObject particleBloodSplatter;    //Prefab containing the blood splatter particle effect
+
+		private ParticleEffect _bloodParticle;
+		private ParticleEffect bloodParticle {
+			get {
+				if(_bloodParticle) {
+					return _bloodParticle;
+				}
+
+				GameObject bloodPrefab = Instantiate(particleBloodSplatter);
+				bloodPrefab.transform.parent = transform;
+				bloodPrefab.transform.localPosition = new Vector3();
+				_bloodParticle = bloodPrefab.GetComponent<ParticleEffect>();
+				return _bloodParticle;
+			}
+		}
 		
 		private Animator animator;					//Used to store a reference to the Player's animator component.
 		private int food;                           //Used to store player food points total during level.
@@ -242,7 +258,10 @@ namespace Completed
 		public void LoseFood (int loss)
 		{
 			//Play full screen animation
-			bloodSplatterEffect.Play();
+			fullscreenBloodSplatter.Play();
+
+			//Play particle effect
+			bloodParticle.Play();
 
 			//Set the trigger for the player animator to transition to the playerHit animation.
 			animator.SetTrigger ("playerHit");

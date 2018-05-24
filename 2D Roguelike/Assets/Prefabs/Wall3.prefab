@@ -71,6 +71,8 @@ MonoBehaviour:
   chopSound2: {fileID: 8300000, guid: f6aaac83be9e0493493aace800b76619, type: 3}
   dmgSprite: {fileID: 21300100, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
   hp: 4
+  particlePrefab: {fileID: 1411823007308756, guid: cb9332863c32cd24fb143de915a5936b,
+    type: 2}
 --- !u!212 &21210520
 SpriteRenderer:
   m_ObjectHideFlags: 1

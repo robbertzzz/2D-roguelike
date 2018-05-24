@@ -10,8 +10,23 @@ namespace Completed
 		public Sprite dmgSprite;					//Alternate sprite to display after Wall has been attacked by player.
 		public int hp = 3;							//hit points for the wall.
 		
-		
-		private SpriteRenderer spriteRenderer;		//Store a component reference to the attached SpriteRenderer.
+		private SpriteRenderer spriteRenderer;      //Store a component reference to the attached SpriteRenderer.
+
+		[SerializeField] private GameObject particlePrefab;
+
+		private ParticleEffect _particleEffect;
+		private ParticleEffect particleEffect {
+			get {
+				if(_particleEffect) {
+					return _particleEffect;
+				}
+
+				GameObject prefab = Instantiate(particlePrefab);
+				prefab.transform.position = transform.position;
+				_particleEffect = prefab.GetComponent<ParticleEffect>();
+				return _particleEffect;
+			}
+		}
 		
 		
 		void Awake ()
@@ -24,6 +39,9 @@ namespace Completed
 		//DamageWall is called when the player attacks a wall.
 		public void DamageWall (int loss)
 		{
+			//Play a particle effect
+			particleEffect.Play();
+
 			//Call the RandomizeSfx function of SoundManager to play one of two chop sounds.
 			SoundManager.instance.RandomizeSfx (chopSound1, chopSound2);
 			

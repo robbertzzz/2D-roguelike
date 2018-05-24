@@ -313,6 +313,19 @@ Prefab:
       propertyPath: bloodSplatterEffect
       value: 
       objectReference: {fileID: 602639953}
+    - target: {fileID: 11446652, guid: 28b53fc28d3a140c392f0e2d919f9de1, type: 2}
+      propertyPath: fullscreenBloodSplatter
+      value: 
+      objectReference: {fileID: 602639953}
+    - target: {fileID: 11446652, guid: 28b53fc28d3a140c392f0e2d919f9de1, type: 2}
+      propertyPath: particleBloodSplatter
+      value: 
+      objectReference: {fileID: 1411823007308756, guid: 01cc4e61d01a26548b2542e09785e5aa,
+        type: 2}
+    - target: {fileID: 21246652, guid: 28b53fc28d3a140c392f0e2d919f9de1, type: 2}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28b53fc28d3a140c392f0e2d919f9de1, type: 2}
   m_IsPrefabParent: 0
@@ -383,7 +396,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -718803943
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.684}
@@ -419,7 +432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac85c60b2171104baff96cd40321bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 4, y: 4}
   animationName: BloodSplatter
 --- !u!1 &640480130
 GameObject:

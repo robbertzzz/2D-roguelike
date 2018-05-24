@@ -1,8 +1,16 @@
 fileFormatVersion: 2
 guid: 4b55ebdc127da43ee9afaef098e22f35
+timeCreated: 1527186803
+licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - chopSound1: {instanceID: 0}
+  - chopSound2: {instanceID: 0}
+  - dmgSprite: {instanceID: 0}
+  - particlePrefab: {fileID: 1411823007308756, guid: cb9332863c32cd24fb143de915a5936b,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
