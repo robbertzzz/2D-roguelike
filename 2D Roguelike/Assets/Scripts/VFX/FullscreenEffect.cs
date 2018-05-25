@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Completed;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Animator))]
@@ -17,6 +18,10 @@ public class FullscreenEffect : MonoBehaviour {
 		get {
 			return GetComponent<Animator>();
 		}
+	}
+
+	private void Start() {
+		GameManager.instance.player.PlayerHit += Play;
 	}
 
 	/// <summary>

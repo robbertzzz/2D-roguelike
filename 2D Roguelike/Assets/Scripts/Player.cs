@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.UI;	//Allows us to use UI.
 using UnityEngine.SceneManagement;
 
+public delegate void PlayerAction();
+
 namespace Completed
 {
 	//Player inherits from MovingObject, our base class for objects that can move, Enemy also inherits from this.
@@ -22,24 +24,24 @@ namespace Completed
 		public AudioClip gameOverSound;             //Audio clip to play when player dies.
 		public FullscreenEffect fullscreenBloodSplatter;//Fullscreen blood splatter effect
 		public GameObject particleBloodSplatter;    //Prefab containing the blood splatter particle effect
+		public ScreenOverlay screenOverlay;
 
-		private ParticleEffect _bloodParticle;
-		private ParticleEffect bloodParticle {
+		public PlayerAction PlayerHit;
+		public PlayerAction FoodLost;
+		
+		private Animator animator;                  //Used to store a reference to the Player's animator component.
+		private int _food;                          //Used to store player food points total during level.
+		public int food {
 			get {
-				if(_bloodParticle) {
-					return _bloodParticle;
-				}
+				return _food;
+			}
 
-				GameObject bloodPrefab = Instantiate(particleBloodSplatter);
-				bloodPrefab.transform.parent = transform;
-				bloodPrefab.transform.localPosition = new Vector3();
-				_bloodParticle = bloodPrefab.GetComponent<ParticleEffect>();
-				return _bloodParticle;
+			set {
+				_food = value;
+				if(FoodLost != null)
+					FoodLost();
 			}
 		}
-		
-		private Animator animator;					//Used to store a reference to the Player's animator component.
-		private int food;                           //Used to store player food points total during level.
 #if UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
         private Vector2 touchOrigin = -Vector2.one;	//Used to store location of screen touch origin for mobile controls.
 #endif
@@ -59,7 +61,15 @@ namespace Completed
 			
 			//Set the foodText to reflect the current player food total.
 			foodText.text = "Food: " + food;
-			
+
+			//Initialize blood particle
+			GameObject bloodPrefab = Instantiate(particleBloodSplatter);
+			bloodPrefab.transform.parent = transform;
+			bloodPrefab.transform.localPosition = new Vector3();
+
+			//Initialize screen overlay
+			screenOverlay.Init();
+
 			//Call the Start function of the MovingObject base class.
 			base.Start ();
 		}
@@ -257,11 +267,8 @@ namespace Completed
 		//It takes a parameter loss which specifies how many points to lose.
 		public void LoseFood (int loss)
 		{
-			//Play full screen animation
-			fullscreenBloodSplatter.Play();
-
-			//Play particle effect
-			bloodParticle.Play();
+			//Call the FoodLost delegate (triggers effects)
+			PlayerHit();
 
 			//Set the trigger for the player animator to transition to the playerHit animation.
 			animator.SetTrigger ("playerHit");

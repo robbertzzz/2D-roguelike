@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4861711959608732}
   - component: {fileID: 198713458310378938}
   - component: {fileID: 199347139480233436}
-  - component: {fileID: 114492356990356264}
+  - component: {fileID: 114247342161596920}
   m_Layer: 0
   m_Name: BloodSplatter
   m_TagString: Untagged
@@ -42,7 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114492356990356264
+--- !u!114 &114247342161596920
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1411823007308756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ee3bda60959f034ca29ba40bfcbb50b, type: 3}
+  m_Script: {fileID: 11500000, guid: 370b81607aa6b3e4da62a8d7c2680e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!198 &198713458310378938
@@ -65,7 +65,7 @@ ParticleSystem:
   stopAction: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
