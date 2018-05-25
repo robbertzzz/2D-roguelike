@@ -293,9 +293,10 @@ namespace Completed
 				//Call the PlaySingle function of SoundManager and pass it the gameOverSound as the audio clip to play.
 				SoundManager.instance.PlaySingle (gameOverSound);
 				
-				//Stop the background music.
+				//Stop the background music and ambient sounds.
 				SoundManager.instance.musicSource.Stop();
-				
+				SoundManager.instance.ambientSource.Stop();
+
 				//Call the GameOver function of GameManager.
 				GameManager.instance.GameOver ();
 			}

@@ -2,7 +2,9 @@ WindowsStandalone
 SceneListBegin?
 Assets/Scenes/Main.unity
 SceneListEnd?
-e980dc017931c5783f7c2411cd9ba865 Assembly-CSharp.dll:Completed.Player
+088c6e16d66b309a44a8fc9baf7d3d57 Assembly-CSharp.dll:Completed.Player
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.BloodParticleEffect
+af0815cb8ecc4a89199430324c78efbd Assembly-CSharp.dll:.FullscreenEffect
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 970a95104359198fe1a98ef48655de8c UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -113,7 +115,9 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-d0cbc462bf169459312e914bad5af9cb Assembly-CSharp.dll:Completed.SoundManager
+2589b894849d1c7631e6ec239647c811 Assembly-CSharp.dll:Completed.SoundManager
+4781576067ff6e54e0b29dda65a2d417 Assembly-CSharp.dll:.ScreenOverlay
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ParticleEffect
 b227e773668c4589461e7461cc6e6d57 Assembly-CSharp.dll:Completed.BoardManager
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
@@ -144,7 +148,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-92460f1765746513cbffd350f5d2e90c Assembly-CSharp.dll:Completed.Wall
+14fd574a93c1807e4c9dc654f29beb77 Assembly-CSharp.dll:Completed.Wall
 dd5d643085ef208a7df2d51e5e5ddeb8 Assembly-CSharp.dll:Completed.GameManager
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MenuTools
 51c0d06af0eb653467365e30eb26c7e5 Assembly-CSharp.dll:Completed.Enemy
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Editor

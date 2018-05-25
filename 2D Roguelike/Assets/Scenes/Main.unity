@@ -713,7 +713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxOpacity: 0.7
-  foodThreshold: 100
+  foodThreshold: 10
 --- !u!1 &1410265689
 GameObject:
   m_ObjectHideFlags: 0
