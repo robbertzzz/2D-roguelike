@@ -74,11 +74,12 @@ public class DataTracker {
 
 	private void SendEvent() {
 		// Sends a new event. The title contains the current level, to keep level stats separate
-		Analytics.CustomEvent("Level " + currentLevel, new Dictionary<string, object> {
+		AnalyticsEvent.Custom("Level " + currentLevel, new Dictionary<string, object> {
 			{ "PlayerHits", playerHits },
 			{ "EnemiesCount", enemies },
 			{ "GameOver", gameOver },
-			{ "LevelSize", new int[2]{levelWidth, levelHeight} },
+			{ "LevelWidth", levelWidth },
+			{ "LevelHeight", levelHeight },
 			{ "FoodPickedUp", foodPickups },
 			{ "FoodGained", foodGained },
 			{ "FoodLost", foodLost }

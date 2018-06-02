@@ -41,9 +41,9 @@ namespace Completed
 			}
 
 			set {
-				if(value < _food)
+				if(value < _food && FoodLost != null)
 					FoodLost();
-				else if(value > food) {
+				else if(value > food && FoodGained != null && FoodGainedAmount != null) {
 					FoodGained();
 					FoodGainedAmount(value - food);
 				}
