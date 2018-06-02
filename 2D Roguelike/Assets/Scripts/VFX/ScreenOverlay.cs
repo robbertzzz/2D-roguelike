@@ -22,13 +22,14 @@ public class ScreenOverlay : MonoBehaviour {
 	}
 
 	public void Init() {
-		GameManager.instance.player.FoodLost += OnFoodLost;
+		GameManager.instance.player.FoodLost += OnFoodChanged;
+		GameManager.instance.player.FoodGained += OnFoodChanged;
 	}
 
 	/// <summary>
 	/// Apply the effect, if threshold has been reached
 	/// </summary>
-	public void OnFoodLost() {
+	public void OnFoodChanged() {
 		if(GameManager.instance.player.food <= foodThreshold) {
 			opacity = Mathf.Lerp(maxOpacity, 0f, GameManager.instance.player.food / (foodThreshold + 1f));
 		} else {

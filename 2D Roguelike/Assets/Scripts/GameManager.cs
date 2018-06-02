@@ -20,12 +20,13 @@ namespace Completed
 		private Text levelText;									//Text to display current level number.
 		private GameObject levelImage;							//Image to block out level as levels are being set up, background for levelText.
 		[HideInInspector] public BoardManager boardScript;		//Store a reference to our BoardManager which will set up the level.
-		private int level = 1;									//Current level number, expressed in game as "Day 1".
-		private List<Enemy> enemies;							//List of all Enemy units, used to issue them move commands.
+		public int level = 1;									//Current level number, expressed in game as "Day 1".
+		public List<Enemy> enemies;							//List of all Enemy units, used to issue them move commands.
 		private bool enemiesMoving;								//Boolean to check if enemies are moving.
-		private bool doingSetup = true;							//Boolean to check if we're setting up board, prevent Player from moving during setup.
-		
-		
+		private bool doingSetup = true;                         //Boolean to check if we're setting up board, prevent Player from moving during setup.
+
+		public delegate void GameManagerAction();
+		public GameManagerAction GameOverEvent;
 		
 		//Awake is always called before any Start functions
 		void Awake()
@@ -136,6 +137,9 @@ namespace Completed
 		//GameOver is called when the player reaches 0 food points
 		public void GameOver()
 		{
+			//Used for data tracking
+			GameOverEvent();
+
 			//Set levelText to display number of levels passed and game over message
 			levelText.text = "After " + level + " days, you starved.";
 			

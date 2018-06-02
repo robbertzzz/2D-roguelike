@@ -92,7 +92,7 @@ namespace Completed
 			RaycastHit2D hit = Physics2D.Linecast(start, end, blockingLayer);
 			GetComponent<BoxCollider2D>().enabled = true;
 
-			if((Random.Range(0, 1) == 0 || yDir == 0) && xDir != 0 && (hit.transform == null || hit.transform.GetComponent<Player>())) {
+			if((Random.Range(0, 2) == 0 || yDir == 0) && xDir != 0 && (hit.transform == null || hit.transform.GetComponent<Player>())) {
 				AttemptMove<Player>(xDir, 0);
 			} else {
 				AttemptMove<Player>(0, yDir);

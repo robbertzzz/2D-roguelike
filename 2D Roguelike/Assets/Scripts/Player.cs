@@ -4,6 +4,7 @@ using UnityEngine.UI;	//Allows us to use UI.
 using UnityEngine.SceneManagement;
 
 public delegate void PlayerAction();
+public delegate void PlayerActionInt(int i);
 
 namespace Completed
 {
@@ -28,7 +29,10 @@ namespace Completed
 
 		public PlayerAction PlayerHit;
 		public PlayerAction FoodLost;
-		
+		public PlayerAction FoodGained;
+		public PlayerActionInt FoodGainedAmount;
+		public PlayerAction LevelEnded;
+
 		private Animator animator;                  //Used to store a reference to the Player's animator component.
 		private int _food;                          //Used to store player food points total during level.
 		public int food {
@@ -37,9 +41,13 @@ namespace Completed
 			}
 
 			set {
-				_food = value;
-				if(FoodLost != null)
+				if(value < _food)
 					FoodLost();
+				else if(value > food) {
+					FoodGained();
+					FoodGainedAmount(value - food);
+				}
+				_food = value;
 			}
 		}
 #if UNITY_IOS || UNITY_ANDROID || UNITY_WP8 || UNITY_IPHONE
@@ -213,6 +221,8 @@ namespace Completed
 			//Check if the tag of the trigger collided with is Exit.
 			if(other.tag == "Exit")
 			{
+				LevelEnded();
+
 				//Invoke the Restart function to start the next level with a delay of restartLevelDelay (default 1 second).
 				Invoke ("Restart", restartLevelDelay);
 				
@@ -223,6 +233,9 @@ namespace Completed
 			//Check if the tag of the trigger collided with is Food.
 			else if(other.tag == "Food")
 			{
+				//Call all functions
+				FoodGained();
+
 				//Add pointsPerFood to the players current food total.
 				food += pointsPerFood;
 				
@@ -239,6 +252,9 @@ namespace Completed
 			//Check if the tag of the trigger collided with is Soda.
 			else if(other.tag == "Soda")
 			{
+				//Call all functions
+				FoodGained();
+
 				//Add pointsPerSoda to players food points total
 				food += pointsPerSoda;
 				
