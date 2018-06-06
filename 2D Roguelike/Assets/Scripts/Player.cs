@@ -221,7 +221,8 @@ namespace Completed
 			//Check if the tag of the trigger collided with is Exit.
 			if(other.tag == "Exit")
 			{
-				LevelEnded();
+				if(gameObject.activeSelf)
+					LevelEnded();
 
 				//Invoke the Restart function to start the next level with a delay of restartLevelDelay (default 1 second).
 				Invoke ("Restart", restartLevelDelay);
